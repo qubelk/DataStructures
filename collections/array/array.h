@@ -77,7 +77,15 @@ public:
 		std::fill(begin(), end(), value);
 	}
 
-	std::expected<T&, std::string> at(size_t index) const noexcept {
+	std::expected<T&, std::string> at(size_t index) noexcept {
+		if (index >= N) {
+			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+		}
+
+		return data_[index];
+	}
+
+	std::expected<const T&, std::string> at(size_t index) const noexcept {
 		if (index >= N) {
 			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
 		}
