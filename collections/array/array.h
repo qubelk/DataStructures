@@ -1,0 +1,105 @@
+#ifndef _COLLECTIONS_ARRAY_H_
+#define _COLLECTIONS_ARRAY_H_
+
+#include <algorithm>
+#include <expected>
+#include <format>
+#include <initializer_list>
+#include <string>
+
+template<typename T, size_t N>
+class Array {
+private:
+	T* data_ = nullptr;
+	size_t size_ = 0;
+
+public:
+	Array() : data_(new T[N]) {
+		std::fill(begin(), end(), 0);
+	}
+
+	Array(const Array<T, N>& arr) : Array() {
+		std::copy(arr.begin(), arr.end(), data_);
+		size_ = arr.size_;
+	}
+
+	Array(std::initializer_list<T> list) : Array() {
+		for (auto&& v : list) {
+			if (size_ < N) {
+				data_[size_++] = v;
+			}
+		}
+	}
+
+	~Array() {
+		delete[] data_;
+		data_ = nullptr;
+	}
+
+	Array<T, N>& operator=(const Array<T, N>& arr) {
+		if (this != arr) {
+			Array<T, N> tmp{arr};
+			swap(tmp);
+		}
+
+		return *this;
+	}
+
+	T* begin() const noexcept {
+		return data_;
+	}
+
+	T* end() const noexcept {
+		return data_ + N;
+	}
+
+	const T* begin() const noexcept {
+		return data_;
+	}
+
+	const T* end() const noexcept {
+		return data_ + N;
+	}
+
+	const T* cbegin() const noexcept {
+		return data_;
+	}
+
+	const T* cend() const noexcept {
+		return data_ + N;
+	}
+
+	void swap(Array<T, N>& arr) {
+		std::swap(data_, arr.data_);
+	}
+
+	size_t size() const noexcept {
+		return size_;
+	}
+
+	size_t maxSize() const noexcept {
+		return N;
+	}
+
+	void fill(T value) {
+		std::fill(begin(), end(), value);
+	}
+
+	std::expected<T&, std::string> at(size_t index) const noexcept {
+		if (index >= N) {
+			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+		}
+
+		return data_[index];
+	}
+
+	T& operator=(size_t index) {
+		return data_[index];
+	}
+
+	const T& operator=(size_t index) const {
+		return data_[index];
+	}
+};
+
+#endif
