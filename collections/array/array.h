@@ -2,7 +2,10 @@
 #define _COLLECTIONS_ARRAY_H_
 
 #include <algorithm>
+#include <expected>
+#include <format>
 #include <initializer_list>
+#include <string>
 
 template<typename T, size_t N>
 class Array {
@@ -50,6 +53,22 @@ public:
 		return data_ + N;
 	}
 
+	const T* begin() const noexcept {
+		return data_;
+	}
+
+	const T* end() const noexcept {
+		return data_ + N;
+	}
+
+	const T* cbegin() const noexcept {
+		return data_;
+	}
+
+	const T* cend() const noexcept {
+		return data_ + N;
+	}
+
 	void swap(Array<T, N>& arr) {
 		std::swap(data_, arr.data_);
 	}
@@ -58,8 +77,28 @@ public:
 		return size_;
 	}
 
-	void fill(T v) {
-		std::fill(begin(), end(), v);
+	size_t maxSize() const noexcept {
+		return N;
+	}
+
+	void fill(T value) {
+		std::fill(begin(), end(), value);
+	}
+
+	std::expected<T&, std::string> at(size_t index) const noexcept {
+		if (index >= N) {
+			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+		}
+
+		return data_[index];
+	}
+
+	T& operator=(size_t index) {
+		return data_[index];
+	}
+
+	const T& operator=(size_t index) const {
+		return data_[index];
 	}
 };
 
