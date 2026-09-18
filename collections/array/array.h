@@ -2,7 +2,7 @@
 #define _COLLECTIONS_ARRAY_H_
 
 #include <algorithm>
-#include <expected>
+#include <exception>
 #include <format>
 #include <initializer_list>
 #include <string>
@@ -72,20 +72,28 @@ public:
 		std::fill(begin(), end(), value);
 	}
 
-	std::expected<T, std::string> at(size_t index) noexcept {
+	T& at(size_t index) {
 		if (index >= N) {
-			return std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
 		return data_[index];
 	}
 
-	std::expected<T, std::string> at(size_t index) const noexcept {
+	const T& at(size_t index) const {
 		if (index >= N) {
-			return std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
 		return data_[index];
+	}
+
+	T& operator[](size_t index) {
+		return at(index);
+	}
+
+	const T& operator[](size_t index) const {
+		return at(index);
 	}
 
 	T& operator=(size_t index) {
