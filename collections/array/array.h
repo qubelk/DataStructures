@@ -79,7 +79,7 @@ public:
 
 	std::expected<T&, std::string> at(size_t index) noexcept {
 		if (index >= N) {
-			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+			return std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
 		return data_[index];
@@ -87,7 +87,7 @@ public:
 
 	std::expected<const T&, std::string> at(size_t index) const noexcept {
 		if (index >= N) {
-			std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
+			return std::unexpected(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
 		return data_[index];
