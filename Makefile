@@ -1,6 +1,6 @@
 CPP := g++
 BUILDDIR := build
-TESTBIN := tests
+TESTBIN := run_tests
 
 WARNFLAGS := -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 \
 	-Wunused -Wunused-function -Wunused-const-variable -Wunused-macros -Wunused-parameter -Wunused-result \
@@ -17,16 +17,16 @@ TESTLIBS := -lgtest -lgtest_main -pthread
 SRCS := tests/collections/array/array_test.cpp
 OBJS := $(SRCS:.cpp=.o)
 
-all: clean $(TESTBIN) runtest
+all: clean $(TESTBIN) test
 
 $(TESTBIN): $(OBJS)
-	$(CPP) $(CPPFLAGS) -o $@ $^ $(TESTLIBS)
+	$(CPP) $(CPPFLAGS) -o $(BUILDDIR)/$@ $^ $(TESTLIBS)
 
 %.o: %.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
-runtest: $(TESTBIN)
+test: $(TESTBIN)
 	./$(BUILDDIR)/$(TESTBIN)
 
 clean:
-	rm -rf build
+	rm -rf build *.o
