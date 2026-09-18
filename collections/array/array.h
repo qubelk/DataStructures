@@ -45,19 +45,11 @@ public:
 		return *this;
 	}
 
-	T* begin() const noexcept {
+	T* begin() noexcept {
 		return data_;
 	}
 
-	T* end() const noexcept {
-		return data_ + N;
-	}
-
-	const T* begin() const noexcept {
-		return data_;
-	}
-
-	const T* end() const noexcept {
+	T* end() noexcept {
 		return data_ + N;
 	}
 
