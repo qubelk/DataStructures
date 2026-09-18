@@ -20,6 +20,7 @@ OBJS := $(SRCS:.cpp=.o)
 all: clean $(TESTBIN) test
 
 $(TESTBIN): $(OBJS)
+	mkdir $(BUILDDIR)
 	$(CPP) $(CPPFLAGS) -o $(BUILDDIR)/$@ $^ $(TESTLIBS)
 
 %.o: %.cpp
@@ -29,4 +30,4 @@ test: $(TESTBIN)
 	./$(BUILDDIR)/$(TESTBIN)
 
 clean:
-	rm -rf build *.o
+	rm -rf $(BUILDDIR) $(OBJS)
