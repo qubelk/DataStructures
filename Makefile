@@ -10,7 +10,7 @@ DEBUGFLAGS := -ggdb -g -Og
 
 SANITIZERS := -fsanitize=address -fsanitize=undefined
 
-CPPFLAGS := -I. $(WARNFLAGS) $(DEBUGFLAGS) $(SANITIZERS)
+CPPFLAGS := -std=c++23 -I. $(WARNFLAGS) $(DEBUGFLAGS) $(SANITIZERS)
 
 TESTLIBS := -lgtest -lgtest_main -pthread
 
