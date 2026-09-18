@@ -10,11 +10,11 @@
 template<typename T, size_t N>
 class Array {
 private:
-	T* data_ = nullptr;
+	T data_[N];
 	size_t size_ = 0;
 
 public:
-	Array() : data_(new T[N]) {
+	Array() {
 		std::fill(begin(), end(), 0);
 	}
 
@@ -29,11 +29,6 @@ public:
 				data_[size_++] = v;
 			}
 		}
-	}
-
-	~Array() {
-		delete[] data_;
-		data_ = nullptr;
 	}
 
 	Array<T, N>& operator=(const Array<T, N>& arr) {
