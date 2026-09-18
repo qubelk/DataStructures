@@ -8,12 +8,16 @@ To better understand the topic of data structures, in this repository I will imp
 
 ### Collections
 
-[ ] `Array<T, N>` from C++ STL
-[ ] `Vector<T>` from C++ STL
-[ ] `List<T>` from C++ STL
+[ ] `Array<T, N>` from C++ STL.
+
+[ ] `Vector<T>` from C++ STL.
+
+[ ] `List<T>` from C++ STL.
 
 ### Smart Pointers
 
-[ ] `UniquePtr<T>` from C++ STL
-[ ] `SharedPtr<T>` from C++ STL
-[ ] `CowPtr<T>` from Rust
+[ ] `UniquePtr<T>` from C++ STL.
+
+[ ] `SharedPtr<T>` from C++ STL.
+
+[ ] `CowPtr<T>` from Rust.
