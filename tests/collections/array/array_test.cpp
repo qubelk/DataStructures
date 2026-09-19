@@ -13,7 +13,7 @@ TEST(ArrayTest, DefaultConstructor) {
 TEST(ArrayTest, ListConstructor) {
 	Array<int, 5> arr{1, 2, 3, 4, 5};
 	EXPECT_EQ(arr.size(), 5);
-	
+
 	for (size_t i = 0; i < arr.size(); ++i) {
 		EXPECT_EQ(arr.at(i), static_cast<int>(i+1));
 	}
@@ -76,7 +76,28 @@ TEST(ArrayTest, Iterators) {
 	EXPECT_EQ(sum, 6);
 }
 
+TEST(ArrayTest, ConstInterators) {
+	const Array<int, 3> a{1, 2, 3};
+	int sum = 0;
+
+	for (auto&& v : a) {
+		sum += v;
+	}
+
+	EXPECT_EQ(sum, 6);
+}
+
 TEST(ArrayTest, BeginEqualsEndWhenEmpty) {
 	Array<int, 0> a;
 	EXPECT_EQ(a.begin(), a.end());
+}
+
+TEST(ArrayTest, Front) {
+	Array<int, 3> a{1, 2, 3};
+	EXPECT_EQ(a.front(), 1);
+}
+
+TEST(ArrayTest, Back) {
+	Array<int, 3> a{1, 2, 3};
+	EXPECT_EQ(a.back(), 3);
 }
