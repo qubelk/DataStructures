@@ -31,7 +31,7 @@ public:
 	}
 
 	Array<T, N>& operator=(const Array<T, N>& arr) {
-		if (this != arr) {
+		if (this != &arr) {
 			Array<T, N> tmp{arr};
 			swap(tmp);
 		}
@@ -47,11 +47,11 @@ public:
 		return data_ + N;
 	}
 
-	const T* cbegin() const noexcept {
+	const T* begin() const noexcept {
 		return data_;
 	}
 
-	const T* cend() const noexcept {
+	const T* end() const noexcept {
 		return data_ + N;
 	}
 
@@ -93,14 +93,6 @@ public:
 
 	const T& operator[](size_t index) const {
 		return at(index);
-	}
-
-	T& operator=(size_t index) {
-		return data_[index];
-	}
-
-	const T& operator=(size_t index) const {
-		return data_[index];
 	}
 };
 
