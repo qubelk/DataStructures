@@ -15,5 +15,8 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v4
 
+    - name: Setup GoogleTest
+      uses: Bacondish2023/setup-googletest@v1.1.0
+
     - name: make test
       run: make
