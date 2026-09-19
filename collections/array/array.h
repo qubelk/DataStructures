@@ -30,10 +30,25 @@ public:
 		}
 	}
 
+	Array(Array<T, N>&& arr) noexcept : data_(arr.data_) {
+		arr.data_ = nullptr;
+	}
+
 	Array<T, N>& operator=(const Array<T, N>& arr) {
 		if (this != &arr) {
 			Array<T, N> tmp{arr};
 			swap(tmp);
+		}
+
+		return *this;
+	}
+
+	Array& operator=(Array&& arr) noexcept {
+		if (this != &arr) {
+			delete[] data_;
+
+			data_ = arr.data_;
+			arr.data_ = nullptr;
 		}
 
 		return *this;
@@ -47,20 +62,36 @@ public:
 		}
 	}
 
-	T* begin() noexcept {
+	constexpr T* begin() noexcept {
 		return data();
 	}
 
-	T* end() noexcept {
+	constexpr T* end() noexcept {
 		return data() + N;
 	}
 
-	const T* begin() const noexcept {
+	constexpr const T* begin() const noexcept {
 		return data();
 	}
 
-	const T* end() const noexcept {
+	constexpr const T* end() const noexcept {
 		return data() + N;
+	}
+
+	constexpr T& front() {
+		return data()[0];
+	}
+
+	constexpr T& back() {
+		return data()[storage_size - 1];
+	}
+
+	constexpr const T& front() const {
+		return data()[0];
+	}
+
+	constexpr const T& back() const {
+		return data()[storage_size - 1];
 	}
 
 	void swap(Array<T, N>& arr) {
