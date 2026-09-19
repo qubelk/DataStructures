@@ -50,35 +50,35 @@ public:
 	}
 
 	constexpr T* begin() noexcept {
-		return data();
+		return data_;
 	}
 
 	constexpr T* end() noexcept {
-		return data() + N;
+		return data_ + N;
 	}
 
 	constexpr const T* begin() const noexcept {
-		return data();
+		return data_;
 	}
 
 	constexpr const T* end() const noexcept {
-		return data() + N;
+		return data_ + N;
 	}
 
 	constexpr T& front() {
-		return data()[0];
+		return data_[0];
 	}
 
 	constexpr T& back() {
-		return data()[storage_size - 1];
+		return data_[storage_size - 1];
 	}
 
 	constexpr const T& front() const {
-		return data()[0];
+		return data_[0];
 	}
 
 	constexpr const T& back() const {
-		return data()[storage_size - 1];
+		return data_[storage_size - 1];
 	}
 
 	void swap(Array<T, N>& arr) {
