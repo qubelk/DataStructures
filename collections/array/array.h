@@ -5,12 +5,18 @@
 #include <exception>
 #include <format>
 #include <initializer_list>
-#include <string>
 
 template<typename T, size_t N>
-class Array {
-private:
+struct ArrayData {
 	T data_[N];
+};
+
+template<typename T>
+struct ArrayData<T, 0> {};
+
+template<typename T, size_t N>
+class Array : ArrayData<T, N> {
+private:
 	size_t size_ = 0;
 
 public:
@@ -37,6 +43,14 @@ public:
 		}
 
 		return *this;
+	}
+
+	constexpr T* data() noexcept {
+		if constexpr (N == 0) {
+			return nullptr;
+		} else {
+			return data_;
+		}
 	}
 
 	T* begin() noexcept {
