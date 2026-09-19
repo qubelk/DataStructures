@@ -27,6 +27,15 @@ TEST(ArrayTest, CopyConstructor) {
 	EXPECT_EQ(b.at(1), 2);
 }
 
+TEST(ArrayTest, MoveConstructor) {
+	Array<int, 3> a{1, 2, 3};
+	Array<int, 3> b{std::move(a)};
+
+	EXPECT_EQ(b.size(), 3);
+	EXPECT_EQ(b.at(1), 2);
+	EXPECT_EQ(a.data(), nullptr);
+}
+
 TEST(ArrayTest, CopyAssignment) {
 	Array<int, 3> a{1, 2, 3};
 	Array<int, 3> b{5, 5, 5};
@@ -34,6 +43,16 @@ TEST(ArrayTest, CopyAssignment) {
 	b = a;
 	EXPECT_EQ(b.at(0), 1);
 	EXPECT_EQ(b.at(2), 3);
+}
+
+TEST(ArrayTest, MoveAssignment) {
+	Array<int, 3> a{1, 2, 3};
+	Array<int, 3> b;
+
+	b = std::move(a);
+	EXPECT_EQ(b.size(), 3);
+	EXPECT_EQ(b.at(2), 3);
+	EXPECT_EQ(a.data(), nullptr);
 }
 
 TEST(ArrayTest, SelfAssignment) {
