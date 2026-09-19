@@ -19,13 +19,13 @@ public:
 	}
 
 	Array(const Array<T, N>& arr) : size_(arr.size_) {
-		std::copy(arr.data() + arr.size(), arr.data() + arr.size(), data());
+		std::copy(arr.data_, arr.data_ + arr.size_, data_);
 	}
 
 	Array(std::initializer_list<T> list) : Array() {
 		for (auto&& v : list) {
 			if (size_ < N) {
-				data()[size_++] = v;
+				data_[size_++] = v;
 			}
 		}
 	}
@@ -64,7 +64,7 @@ public:
 	}
 
 	void swap(Array<T, N>& arr) {
-		std::swap(data(), arr.data());
+		std::swap(data_, arr.data_);
 	}
 
 	size_t size() const noexcept {
@@ -84,7 +84,7 @@ public:
 			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
-		return data()[index];
+		return data_[index];
 	}
 
 	const T& at(size_t index) const {
@@ -92,7 +92,7 @@ public:
 			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
-		return data()[index];
+		return data_[index];
 	}
 
 	T& operator[](size_t index) {
