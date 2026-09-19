@@ -26,3 +26,40 @@ TEST(ArrayTest, CopyConstructor) {
 	EXPECT_EQ(b.size(), 3);
 	EXPECT_EQ(b.at(1), 2);
 }
+
+TEST(ArrayTest, CopyAssignment) {
+	Array<int, 3> a{1, 2, 3};
+	Array<int, 3> b{5, 5, 5};
+
+	b = a;
+	EXPECT_EQ(b.at(0), 1);
+	EXPECT_EQ(b.at(2), 3);
+}
+
+TEST(ArrayTest, SelfAssignment) {
+	Array<int, 3> a{1, 2, 3};
+	a = a;
+	EXPECT_EQ(a.at(0), 1);
+	EXPECT_EQ(a.at(2), 3);
+}
+
+TEST(ArrayTest, AtThrowsOutOfRange) {
+	Array<int, 3> a{1, 2, 3};
+	EXPECT_THROW(a.at(15), std::out_of_range);
+}
+
+TEST(ArrayTest, Iterators) {
+	Array<int, 3> a{1, 2, 3};
+	int sum = 0;
+
+	for (auto&& v : a) {
+		sum += v;
+	}
+
+	EXPECT_EQ(sum, 6);
+}
+
+TEST(ArrayTest, BeginEqualsEndWhenEmpty) {
+	Array<int, 3> a;
+	EXPECT_EQ(a.begin(), a.end());
+}
