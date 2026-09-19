@@ -5,6 +5,7 @@
 #include <exception>
 #include <format>
 #include <initializer_list>
+#include <array>
 
 template<typename T, size_t N>
 class Array {
@@ -30,25 +31,10 @@ public:
 		}
 	}
 
-	Array(Array<T, N>&& arr) noexcept : data_(arr.data_) {
-		arr.data_ = nullptr;
-	}
-
 	Array<T, N>& operator=(const Array<T, N>& arr) {
 		if (this != &arr) {
 			Array<T, N> tmp{arr};
 			swap(tmp);
-		}
-
-		return *this;
-	}
-
-	Array& operator=(Array&& arr) noexcept {
-		if (this != &arr) {
-			delete[] data_;
-
-			data_ = arr.data_;
-			arr.data_ = nullptr;
 		}
 
 		return *this;
