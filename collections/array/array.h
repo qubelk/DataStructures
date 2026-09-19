@@ -35,6 +35,7 @@ public:
 		if (this != &arr) {
 			Array<T, N> tmp{arr};
 			swap(tmp);
+			size_ = arr.size_;
 		}
 
 		return *this;
