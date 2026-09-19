@@ -101,3 +101,27 @@ TEST(ArrayTest, Back) {
 	Array<int, 3> a{1, 2, 3};
 	EXPECT_EQ(a.back(), 3);
 }
+
+TEST(ArrayTest, ConstFront) {
+	const Array<int, 3> a{1, 2, 3};
+	EXPECT_EQ(a.front(), 1);
+}
+
+TEST(ArrayTest, ConstBack) {
+	const Array<int, 3> a{1, 2, 3};
+	EXPECT_EQ(a.back(), 3);
+}
+
+TEST(ArrayTest, NullData) {
+	Array<int, 0> a;
+	EXPECT_EQ(a.data(), nullptr);
+}
+
+TEST(ArrayTest, Fill) {
+	Array<int, 3> a{};
+	a.fill(0);
+
+	for (auto&& v : a) {
+		EXPECT_EQ(v, 0);
+	}
+}
