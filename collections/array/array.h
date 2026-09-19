@@ -19,13 +19,13 @@ public:
 	}
 
 	Array(const Array<T, N>& arr) : size_(arr.size_) {
-		std::copy(arr.data_, arr.data_ + arr.size_, data_);
+		std::copy(arr.data() + arr.size(), arr.data() + arr.size(), data());
 	}
 
 	Array(std::initializer_list<T> list) : Array() {
 		for (auto&& v : list) {
 			if (size_ < N) {
-				data_[size_++] = v;
+				data()[size_++] = v;
 			}
 		}
 	}
@@ -64,7 +64,7 @@ public:
 	}
 
 	void swap(Array<T, N>& arr) {
-		std::swap(data(), arr.data_);
+		std::swap(data(), arr.data());
 	}
 
 	size_t size() const noexcept {
