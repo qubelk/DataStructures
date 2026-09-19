@@ -15,7 +15,7 @@ template<typename T>
 struct ArrayData<T, 0> {};
 
 template<typename T, size_t N>
-class Array : ArrayData<T, N> {
+class Array : public ArrayData<T, N> {
 private:
 	size_t size_ = 0;
 
