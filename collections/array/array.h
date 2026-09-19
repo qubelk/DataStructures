@@ -5,12 +5,12 @@
 #include <exception>
 #include <format>
 #include <initializer_list>
-#include <string>
 
 template<typename T, size_t N>
 class Array {
 private:
-	T data_[N];
+	static constexpr size_t storage_size = (N == 0) ? 1 : N;
+	T data_[storage_size];
 	size_t size_ = 0;
 
 public:
@@ -18,9 +18,8 @@ public:
 		std::fill(begin(), end(), 0);
 	}
 
-	Array(const Array<T, N>& arr) : Array() {
-		std::copy(arr.begin(), arr.end(), data_);
-		size_ = arr.size_;
+	Array(const Array<T, N>& arr) : size_(arr.size_) {
+		std::copy(arr.data_, arr.data_ + arr.size_, data_);
 	}
 
 	Array(std::initializer_list<T> list) : Array() {
@@ -31,8 +30,12 @@ public:
 		}
 	}
 
+	Array(Array<T, N>&& arr) noexcept : data_(arr.data_) {
+		arr.data_ = nullptr;
+	}
+
 	Array<T, N>& operator=(const Array<T, N>& arr) {
-		if (this != arr) {
+		if (this != &arr) {
 			Array<T, N> tmp{arr};
 			swap(tmp);
 		}
@@ -40,20 +43,55 @@ public:
 		return *this;
 	}
 
-	T* begin() noexcept {
-		return data_;
+	Array& operator=(Array&& arr) noexcept {
+		if (this != &arr) {
+			delete[] data_;
+
+			data_ = arr.data_;
+			arr.data_ = nullptr;
+		}
+
+		return *this;
 	}
 
-	T* end() noexcept {
-		return data_ + N;
+	constexpr T* data() noexcept {
+		if constexpr (N == 0) {
+			return nullptr;
+		} else {
+			return data_;
+		}
 	}
 
-	const T* cbegin() const noexcept {
-		return data_;
+	constexpr T* begin() noexcept {
+		return data();
 	}
 
-	const T* cend() const noexcept {
-		return data_ + N;
+	constexpr T* end() noexcept {
+		return data() + N;
+	}
+
+	constexpr const T* begin() const noexcept {
+		return data();
+	}
+
+	constexpr const T* end() const noexcept {
+		return data() + N;
+	}
+
+	constexpr T& front() {
+		return data()[0];
+	}
+
+	constexpr T& back() {
+		return data()[storage_size - 1];
+	}
+
+	constexpr const T& front() const {
+		return data()[0];
+	}
+
+	constexpr const T& back() const {
+		return data()[storage_size - 1];
 	}
 
 	void swap(Array<T, N>& arr) {
@@ -94,14 +132,6 @@ public:
 
 	const T& operator[](size_t index) const {
 		return at(index);
-	}
-
-	T& operator=(size_t index) {
-		return data_[index];
-	}
-
-	const T& operator=(size_t index) const {
-		return data_[index];
 	}
 };
 
