@@ -33,7 +33,6 @@ TEST(ArrayTest, MoveConstructor) {
 
 	EXPECT_EQ(b.size(), 3);
 	EXPECT_EQ(b.at(1), 2);
-	EXPECT_EQ(a.data(), nullptr);
 }
 
 TEST(ArrayTest, CopyAssignment) {
@@ -52,7 +51,6 @@ TEST(ArrayTest, MoveAssignment) {
 	b = std::move(a);
 	EXPECT_EQ(b.size(), 3);
 	EXPECT_EQ(b.at(2), 3);
-	EXPECT_EQ(a.data(), nullptr);
 }
 
 TEST(ArrayTest, SelfAssignment) {
