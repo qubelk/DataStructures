@@ -60,6 +60,6 @@ TEST(ArrayTest, Iterators) {
 }
 
 TEST(ArrayTest, BeginEqualsEndWhenEmpty) {
-	Array<int, 3> a;
+	Array<int, 0> a;
 	EXPECT_EQ(a.begin(), a.end());
 }
