@@ -8,16 +8,16 @@ To better understand the topic of data structures, in this repository I will imp
 
 ### Collections
 
-[X] `Array<T, N>` - wrapper around a static array from C++ STL.
+- [x] `Array<T, N>` - wrapper around a static array from C++ STL.
 
-[ ] `Vector<T>` - dynamic array from C++ STL.
+- [ ] `Vector<T>` - dynamic array from C++ STL.
 
-[ ] `List<T>` - ordered list of elements from C++ STL.
+- [ ] `List<T>` - ordered list of elements from C++ STL.
 
 ### Smart Pointers
 
-[ ] `UniquePtr<T>` - pointer with automatic release and unique ownership from C++ STL.
+- [ ] `UniquePtr<T>` - pointer with automatic release and unique ownership from C++ STL.
 
-[ ] `SharedPtr<T>` - pointer with reference count for owners from C++ STL.
+- [ ] `SharedPtr<T>` - pointer with reference count for owners from C++ STL.
 
-[ ] `CowPtr<T>` - pointer with copying data on write from Rust.
+- [ ] `CowPtr<T>` - pointer with copying data on write from Rust.
