@@ -7,16 +7,10 @@
 #include <initializer_list>
 
 template<typename T, size_t N>
-struct ArrayData {
-	T data_[N];
-};
-
-template<typename T>
-struct ArrayData<T, 0> {};
-
-template<typename T, size_t N>
-class Array : public ArrayData<T, N> {
+class Array {
 private:
+	static constexpr size_t storage_size = (N == 0) ? 1 : N;
+	T data_[storage_size];
 	size_t size_ = 0;
 
 public:
@@ -54,23 +48,23 @@ public:
 	}
 
 	T* begin() noexcept {
-		return data_;
+		return data();
 	}
 
 	T* end() noexcept {
-		return data_ + N;
+		return data() + N;
 	}
 
 	const T* begin() const noexcept {
-		return data_;
+		return data();
 	}
 
 	const T* end() const noexcept {
-		return data_ + N;
+		return data() + N;
 	}
 
 	void swap(Array<T, N>& arr) {
-		std::swap(data_, arr.data_);
+		std::swap(data(), arr.data_);
 	}
 
 	size_t size() const noexcept {
@@ -90,7 +84,7 @@ public:
 			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
-		return data_[index];
+		return data()[index];
 	}
 
 	const T& at(size_t index) const {
@@ -98,7 +92,7 @@ public:
 			throw std::out_of_range(std::format("Index {} out of range for Array with size {}", index, N));
 		}
 
-		return data_[index];
+		return data()[index];
 	}
 
 	T& operator[](size_t index) {
