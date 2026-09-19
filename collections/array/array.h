@@ -18,9 +18,8 @@ public:
 		std::fill(begin(), end(), 0);
 	}
 
-	Array(const Array<T, N>& arr) : Array() {
-		std::copy(arr.begin(), arr.end(), data_);
-		size_ = arr.size_;
+	Array(const Array<T, N>& arr) : size_(arr.size_) {
+		std::copy(arr.data_, arr.data_ + arr.size_, data_);
 	}
 
 	Array(std::initializer_list<T> list) : Array() {
