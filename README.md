@@ -16,8 +16,8 @@ To better understand the topic of data structures, in this repository I will imp
 
 ### Smart Pointers
 
-- [ ] `UniquePtr<T>` - pointer with automatic release and unique ownership from C++ STL.
+- [ ] `Unique<T>` - pointer with automatic release and unique ownership from C++ STL.
 
-- [ ] `SharedPtr<T>` - pointer with reference count for owners from C++ STL.
+- [ ] `Shared<T>` - pointer with reference count for owners from C++ STL.
 
-- [ ] `CowPtr<T>` - pointer with copying data on write from Rust.
+- [ ] `Cow<T>` - pointer with copying data on write from Rust.
