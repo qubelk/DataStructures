@@ -15,7 +15,7 @@ private:
 	}
 
 public:
-	explicit Cow(T data) : data_(std::make_shared<T>(std::move(v))) {}
+	explicit Cow(T data) : data_(std::make_shared<T>(std::move(data))) {}
 
 	const T& read() const {
 		return *data_;
@@ -23,7 +23,7 @@ public:
 
 	T& write() {
 		detach();
-		return data_;
+		return *data_;
 	}
 
 	T& operator*() {
