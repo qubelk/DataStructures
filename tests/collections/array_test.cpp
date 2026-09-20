@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "collections/array/array.h"
+#include "collections/array.h"
 
 TEST(ArrayTest, DefaultConstructor) {
 	Array<int, 5> arr;

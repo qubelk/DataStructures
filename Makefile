@@ -15,7 +15,7 @@ CPPFLAGS := -std=c++23 -I. -fPIC $(WARNFLAGS) $(DEBUGFLAGS) $(SANITIZERS)
 
 TESTLIBS := -lgtest -lgtest_main -pthread
 
-SRCS := tests/collections/array/array_test.cpp
+SRCS := tests/collections/array_test.cpp
 OBJS := $(SRCS:.cpp=.o)
 
 all: clean $(TESTBIN) test
