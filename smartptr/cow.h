@@ -15,7 +15,7 @@ private:
 	}
 
 public:
-	explicit Cow(T data) : data_(std::make_shared<T>(std::move(v))) {}
+	explicit Cow(T data) : data_(std::make_shared<T>(std::move(data))) {}
 
 	const T& read() const {
 		return *data_;
@@ -23,7 +23,7 @@ public:
 
 	T& write() {
 		detach();
-		return data_;
+		return *data_;
 	}
 
 	T& operator*() {
@@ -41,6 +41,12 @@ public:
 
 	const T* get() const {
 		return data_.get();
+	}
+
+	friend auto operator<=>(const Cow& a, const Cow& b) = default;
+
+	friend auto operator<=>(const Cow& a, std::nullptr_t) {
+		return a.get() <=> nullptr;
 	}
 };
 
