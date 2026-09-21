@@ -5,7 +5,6 @@
 #include <exception>
 #include <format>
 #include <initializer_list>
-#include <array>
 
 template<typename T, size_t N>
 class Array {
