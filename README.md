@@ -20,4 +20,4 @@ To better understand the topic of data structures, in this repository I will imp
 
 - [ ] `Shared<T>` - pointer with reference count for owners from C++ STL.
 
-- [ ] `Cow<T>` - pointer with copying data on write from Rust.
+- [x] `Cow<T>` - pointer with copying data on write from Rust.
