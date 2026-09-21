@@ -23,7 +23,7 @@ TEST(CowTest, MoveAssignment) {
 
 	c2 = std::move(c1);
 	EXPECT_EQ(c2.read(), 42);
-	EXPECT_EQ(c1.read(), nullptr);
+	EXPECT_EQ(c1.get(), nullptr);
 }
 
 TEST(CowTest, SelfAssignment) {
