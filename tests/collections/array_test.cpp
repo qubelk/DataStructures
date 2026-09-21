@@ -125,3 +125,13 @@ TEST(ArrayTest, Fill) {
 		EXPECT_EQ(v, 0);
 	}
 }
+
+TEST(ArrayTest, TwoDimensionalArray) {
+	Array<Array<int, 3>, 3> a{
+		{1, 2, 3},
+		{2, 2, 2},
+		{3, 2, 1},
+	};
+
+	EXPECT_EQ(a.at(1).at(1), 2);
+}
