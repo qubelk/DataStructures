@@ -2,7 +2,6 @@
 #define _COLLECTIONS_ARRAY_H_
 
 #include <algorithm>
-#include <exception>
 #include <format>
 #include <initializer_list>
 
