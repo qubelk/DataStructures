@@ -43,10 +43,16 @@ public:
 		return data_.get();
 	}
 
-	friend auto operator<=>(const Cow& a, const Cow& b) = default;
+	friend auto operator==(const Cow& a, const Cow& b) = default;
 
-	friend auto operator<=>(const Cow& a, std::nullptr_t) {
-		return a.get() <=> nullptr;
+	friend auto operator==(const Cow& a, std::nullptr_t) {
+		return a.get() == nullptr;
+	}
+
+	friend auto operator!=(const Cow& a, const Cow& b) = default;
+
+	friend auto operator!=(const Cow& a, std::nullptr_t) {
+		return a.get() != nullptr;
 	}
 };
 
