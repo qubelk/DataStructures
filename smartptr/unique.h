@@ -68,6 +68,18 @@ public:
 	const T& operator*() const {
 		return *data_;
 	}
+
+	friend bool operator==(const Unique& a, const Unique& b) = default;
+
+	friend bool operator==(const Unique& a, std::nullptr_t) {
+		return a.get() == nullptr;
+	}
+
+	friend bool operator!=(const Unique& a, const Unique& b) = default;
+
+	friend bool operator!=(const Unique& a, std::nullptr_t) {
+		return a.get() != nullptr;
+	}
 };
 
 #endif
