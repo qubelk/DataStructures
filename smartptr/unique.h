@@ -15,10 +15,24 @@ public:
 
 	Unique(const Unique&) = delete;
 
+	Unique(Unique&& u) noexcept : data_(u.data_) {
+		u.data_ = nullptr;
+	}
+
 	Unique& operator=(const Unique&) = delete;
 
 	Unique& operator=(std::nullptr_t) noexcept {
 		reset();
+		return *this;
+	}
+
+	Unique& operator=(Unique&& u) noexcept {
+		if (this != &u) {
+			reset();
+			data_ = u.data_;
+			u.data_ = nullptr;
+		}
+
 		return *this;
 	}
 
@@ -33,6 +47,10 @@ public:
 		T* tmp = data_;
 		data_ = nullptr;
 		return tmp;
+	}
+
+	void swap(Unique& u) noexcept {
+		std::swap(data_, u.data_);
 	}
 
 	T* get() noexcept {
