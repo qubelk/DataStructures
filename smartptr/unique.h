@@ -11,12 +11,20 @@ private:
 public:
 	Unique() : data_(nullptr) {}
 
+	explicit Unique(T data) : data_(new T) {
+		data_ = data;
+	}
+
 	explicit Unique(T* data) : data_(data) {}
 
 	Unique(const Unique&) = delete;
 
 	Unique(Unique&& u) noexcept : data_(u.data_) {
 		u.data_ = nullptr;
+	}
+
+	~Unique() {
+		delete data_;
 	}
 
 	Unique& operator=(const Unique&) = delete;
