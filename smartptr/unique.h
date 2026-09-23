@@ -18,7 +18,6 @@ public:
 	explicit Unique(T* data) : data_(new T) {
 		if (data != nullptr) {
 			*data_ = *data;
-			data = nullptr;
 		} else {
 			data_ = nullptr;
 		}
