@@ -15,8 +15,13 @@ public:
 		*data_ = data;
 	}
 
-	explicit Unique(T* data) : data_(data) {
-		data = nullptr;
+	explicit Unique(T* data) : data_(new T) {
+		if (data != nullptr) {
+			*data_ = *data;
+			data = nullptr;
+		} else {
+			data_ = nullptr;
+		}
 	}
 
 	Unique(const Unique&) = delete;
