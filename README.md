@@ -16,7 +16,7 @@ To better understand the topic of data structures, in this repository I will imp
 
 ### Smart Pointers
 
-- [ ] `Unique<T>` - pointer with automatic release and unique ownership from C++ STL.
+- [x] `Unique<T>` - pointer with automatic release and unique ownership from C++ STL.
 
 - [ ] `Shared<T>` - pointer with reference count for owners from C++ STL.
 
