@@ -69,4 +69,6 @@ TEST(UniqueTest, Release) {
 
 	EXPECT_EQ(u, nullptr);
 	EXPECT_EQ(*tmp, 42);
+
+	delete tmp;
 }
