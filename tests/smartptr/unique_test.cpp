@@ -23,8 +23,6 @@ TEST(UniqueTest, PointerConstructor) {
 	Unique<int> u{ptr};
 
 	EXPECT_EQ(*u, 42);
-
-	delete ptr;
 }
 
 TEST(UniqueTest, InPlacePointerConstructor) {
