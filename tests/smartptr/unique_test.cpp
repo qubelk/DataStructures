@@ -72,3 +72,12 @@ TEST(UniqueTest, Release) {
 
 	delete tmp;
 }
+
+TEST(UniqueTest, Swap) {
+	Unique<int> u1{42};
+	Unique<int> u2{15};
+
+	u1.swap(u2);
+	EXPECT_EQ(*u1, 15);
+	EXPECT_EQ(*u2, 42);
+}
