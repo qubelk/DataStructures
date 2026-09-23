@@ -12,10 +12,12 @@ public:
 	Unique() : data_(nullptr) {}
 
 	explicit Unique(T data) : data_(new T) {
-		data_ = data;
+		*data_ = data;
 	}
 
-	explicit Unique(T* data) : data_(data) {}
+	explicit Unique(T* data) : data_(data) {
+		data = nullptr;
+	}
 
 	Unique(const Unique&) = delete;
 
