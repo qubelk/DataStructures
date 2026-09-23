@@ -107,7 +107,7 @@ TEST(UniqueTest, ArrayInPlacePointerConstructor) {
 
 TEST(UniqueTest, ArrayMoveConstructor) {
 	Unique<int[]> u1{new int[]{1, 2, 3, 4, 5}};
-	Unique<int[]> u2{std::move(u2)};
+	Unique<int[]> u2{std::move(u1)};
 
 	EXPECT_EQ(u2[0], 1);
 	EXPECT_EQ(u2[4], 5);
