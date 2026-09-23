@@ -9,19 +9,11 @@ private:
 	T* data_;
 
 public:
-	Unique() : data_(nullptr) {}
-
 	explicit Unique(T data) : data_(new T) {
 		*data_ = data;
 	}
 
-	explicit Unique(T* data) : data_(new T) {
-		if (data != nullptr) {
-			*data_ = *data;
-		} else {
-			data_ = nullptr;
-		}
-	}
+	explicit Unique(T* data = nullptr) noexcept : data_(data) {}
 
 	Unique(const Unique&) = delete;
 
