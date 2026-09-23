@@ -10,7 +10,7 @@ TEST(UniqueTest, DefaultConstructor) {
 	EXPECT_TRUE(u == nullptr);
 }
 
-TEST(UniqueTest, MakeConstructor) {
+TEST(UniqueTest, LiteralConstructor) {
 	Unique<int> u{42};
 
 	EXPECT_EQ(*u, 42);
@@ -20,10 +20,17 @@ TEST(UniqueTest, PointerConstructor) {
 	int* ptr = new int;
 	*ptr = 42;
 
-	Unique<int> u1{ptr};
+	Unique<int> u{ptr};
 
-	EXPECT_EQ(*u1, 42);
-	EXPECT_EQ(ptr, nullptr);
+	EXPECT_EQ(*u, 42);
+
+	delete ptr;
+}
+
+TEST(UniqueTest, InPlacePointerConstructor) {
+	Unique<int> u{new int(42)};
+
+	EXPECT_EQ(*u, 42);
 }
 
 TEST(UniqueTest, MoveConstructor) {
