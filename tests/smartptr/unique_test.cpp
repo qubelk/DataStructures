@@ -38,3 +38,42 @@ TEST(UniqueTest, MoveConstructor) {
 	EXPECT_EQ(*u2, 42);
 	EXPECT_EQ(u1, nullptr);
 }
+
+TEST(UniqueTest, NullptrAssignment) {
+	Unique<int> u{42};
+	EXPECT_EQ(*u, 42);
+
+	u = nullptr;
+	EXPECT_EQ(u, nullptr);
+}
+
+TEST(UniqueTest, MoveAssginment) {
+	Unique<int> u1{42};
+	Unique<int> u2{15};
+
+	u2 = std::move(u1);
+	EXPECT_EQ(*u2, 42);
+}
+
+TEST(UniqueTest, SelfMoveAssignment) {
+	Unique<int> u{42};
+	u = std::move(u);
+
+	EXPECT_EQ(*u, 42);
+}
+
+TEST(UniqueTest, Reset) {
+	Unique<int> u{42};
+	EXPECT_EQ(*u, 42);
+
+	u.reset();
+	EXPECT_EQ(u, nullptr);
+}
+
+TEST(UniqueTest, Release) {
+	Unique<int> u{42};
+	int* tmp = u.release();
+
+	EXPECT_EQ(u, nullptr);
+	EXPECT_EQ(*tmp, 42);
+}
