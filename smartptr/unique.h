@@ -75,11 +75,11 @@ public:
 		return *data_;
 	}
 
-	bool operator==(const Unique& a, std::nullptr_t) {
+	friend bool operator==(const Unique& a, std::nullptr_t) {
 		return a.get() == nullptr;
 	}
 
-	bool operator!=(const Unique& a, std::nullptr_t) {
+	friend bool operator!=(const Unique& a, std::nullptr_t) {
 		return a.get() != nullptr;
 	}
 };
