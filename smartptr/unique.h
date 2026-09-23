@@ -6,7 +6,7 @@
 
 template<typename T>
 class Unique {
-	static_assert(std::is_array_v<T> == true, "Use Unique<T[]> for arrays, not Unique<T[N]>");
+	static_assert(std::is_array_v<T> != true, "Use Unique<T[]> for arrays, not Unique<T[N]>");
 
 private:
 	T* data_ = new T;
