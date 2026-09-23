@@ -11,7 +11,7 @@ DEBUGFLAGS := -ggdb -g -Og
 
 SANITIZERS := -fsanitize=address -fsanitize=undefined
 
-CPPFLAGS := -std=c++23 -I. -fPIC $(WARNFLAGS) $(DEBUGFLAGS) $(SANITIZERS)
+CPPFLAGS := -std=c++23 -I. -fPIC $(WARNFLAGS) $(DEBUGFLAGS)
 
 TESTLIBS := -lgtest -lgtest_main -pthread
 
@@ -22,17 +22,24 @@ all: clean $(TESTBIN) test
 
 $(TESTBIN): $(OBJS)
 	mkdir $(BUILDDIR)
-	$(CPP) $(CPPFLAGS) -o $(BUILDDIR)/$@ $^ $(TESTLIBS)
+	$(CPP) $(CPPFLAGS) $(SANITIZERS) -o $(BUILDDIR)/$@ $^ $(TESTLIBS)
+
+$(TESTBIN)-valgrind: $(OBJS)
+	mkdir $(BUILDDIR)
+	$(CPP) $(CPPFLAGS) -o $(BUILDDIR)/$(TESTBIN) $^ $(TESTLIBS)
 
 $(BIN): $(OBJS)
 	mkdir $(BUILDDIR)
-	$(CPP) $(CPPFLAGS) -shared -o $(BUILDDIR)/$@ $^
+	$(CPP) $(CPPFLAGS) $(SANITIZERS) -shared -o $(BUILDDIR)/$@ $^
 
 %.o: %.cpp
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(CPPFLAGS) $(SANITIZERS) -c $< -o $@
 
 test: $(TESTBIN)
 	./$(BUILDDIR)/$(TESTBIN)
 
 clean:
 	rm -rf $(BUILDDIR) $(OBJS)
+
+check-leak: $(TESTBIN)-valgrind
+	valgrind --leak-check=full ./$(BUILDDIR)/$(TESTBIN)
