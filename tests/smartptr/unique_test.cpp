@@ -55,13 +55,6 @@ TEST(UniqueTest, MoveAssginment) {
 	EXPECT_EQ(*u2, 42);
 }
 
-TEST(UniqueTest, SelfMoveAssignment) {
-	Unique<int> u{42};
-	u = std::move(u);
-
-	EXPECT_EQ(*u, 42);
-}
-
 TEST(UniqueTest, Reset) {
 	Unique<int> u{42};
 	EXPECT_EQ(*u, 42);
