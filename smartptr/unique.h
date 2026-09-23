@@ -6,10 +6,10 @@
 template<typename T>
 class Unique {
 private:
-	T* data_;
+	T* data_ = new T;
 
 public:
-	explicit Unique(T data) : data_(new T) {
+	explicit Unique(T data) {
 		*data_ = data;
 	}
 
