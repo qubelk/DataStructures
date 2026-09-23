@@ -24,8 +24,6 @@ TEST(UniqueTest, PointerConstructor) {
 
 	EXPECT_EQ(*u1, 42);
 	EXPECT_EQ(ptr, nullptr);
-
-	delete ptr;
 }
 
 TEST(UniqueTest, MoveConstructor) {
