@@ -10,10 +10,19 @@ private:
 	std::function<T()> factory_;
 	mutable std::optional<T> cached_result_;
 
-	void ensureInitialized() const {
+	void ensureInitialized() const virtual {
 		if (cached_result_.has_value() == false) {
 			cached_result_ = factory_();
 		}
+	}
+
+protected:
+	std::optional<T> getCachedResult() {
+		return cached_result_;
+	}
+
+	std::function<T()> getFactory() {
+		return factory_;
 	}
 
 public:
