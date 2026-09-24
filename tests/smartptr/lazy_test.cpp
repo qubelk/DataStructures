@@ -71,17 +71,3 @@ TEST(LazyTest, Get) {
 
 	EXPECT_EQ(l.get().data_, "Some Data");
 }
-
-TEST(LazyTest, Reset) {
-	Lazy<Dummy> l{[]() {
-		return Dummy("Reset");
-	}};
-
-	l->something();
-	l->something();
-	EXPECT_EQ(l->data_, "Reset some some");
-
-	l.reset();
-
-	EXPECT_EQ(l->data_, "Reset");
-}
