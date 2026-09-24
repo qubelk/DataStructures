@@ -17,11 +17,19 @@ private:
 	}
 
 protected:
-	std::optional<T> getCachedResult() {
+	std::optional<T>& getCachedResult() {
 		return cached_result_;
 	}
 
-	std::function<T()> getFactory() {
+	const std::optional<T>& getCachedResult() const {
+		return cached_result_;
+	}
+
+	std::function<T()>& getFactory() {
+		return factory_;
+	}
+
+	const std::function<T()>& getFactory() const {
 		return factory_;
 	}
 
