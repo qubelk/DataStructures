@@ -6,7 +6,7 @@
 
 template<typename T>
 class Lazy {
-private:
+protected:
 	std::function<T()> factory_;
 	mutable std::optional<T> cached_result_;
 
@@ -14,23 +14,6 @@ private:
 		if (cached_result_.has_value() == false) {
 			cached_result_ = factory_();
 		}
-	}
-
-protected:
-	std::optional<T>& getCachedResult() {
-		return cached_result_;
-	}
-
-	const std::optional<T>& getCachedResult() const {
-		return cached_result_;
-	}
-
-	std::function<T()>& getFactory() {
-		return factory_;
-	}
-
-	const std::function<T()>& getFactory() const {
-		return factory_;
 	}
 
 public:
