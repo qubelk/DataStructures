@@ -10,7 +10,7 @@ private:
 	std::function<T()> factory_;
 	mutable std::optional<T> cached_result_;
 
-	void ensureInitialized() const virtual {
+	virtual void ensureInitialized() const {
 		if (cached_result_.has_value() == false) {
 			cached_result_ = factory_();
 		}
