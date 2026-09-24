@@ -57,10 +57,6 @@ public:
 	bool isInitialized() const noexcept {
 		return cached_result_.has_value();
 	}
-
-	virtual void reset() {
-		cached_result_.reset();
-	}
 };
 
 #endif
