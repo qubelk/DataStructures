@@ -9,14 +9,15 @@ template<typename T>
 class ConcurrentLazy : public Lazy<T> {
 private:
 	mutable std::once_flag once_;
-	mutable std::function<T()> factory_ = getFactory();
-	std::optional<T> cached_result_ = getCachedResult();
 
 	void ensureInitialized() const override {
 		std::call_once(once_, [this] {
-			cached_result_ = factory_();
+			Lazy<T>::cached_result_ = Lazy<T>::factory_();
 		});
 	}
+
+public:
+	using Lazy<T>::Lazy;
 };
 
 #endif
