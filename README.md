@@ -16,14 +16,14 @@ To better understand the topic of data structures, in this repository I will imp
 
 ### Smart Pointers
 
-- [ ] `Unique<T>` - pointer with automatic release and unique ownership from C++ STL.
+- [x] `Unique<T>` - pointer with automatic release and unique ownership from C++ STL.
 
 - [ ] `Rc<T>` - pointer with reference count for owners from Rust.
 
-- [ ] `Arc<T>` - thread safe analog for `Rc<T>` uses atomic from Rust.
+- [ ] `Arc<T>` - thread safe analog for `Rc<T>` from Rust.
 
 - [x] `Cow<T>` - pointer with copying data on write from Rust.
 
-- [ ] `Lazy<T>` - pointer to function whose value calculated once and then cached from 'Thunk' concepts.
+- [x] `Lazy<T>` - pointer to function whose value calculated once and then cached from 'Thunk' concepts.
 
-- [ ] `ConcurrentLazy<T>` - thread safe analog of `Lazy<T>`.
+- [x] `ConcurrentLazy<T>` - thread safe analog of `Lazy<T>`.
