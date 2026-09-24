@@ -16,7 +16,7 @@ CPPFLAGS := -std=c++23 -I. -fPIC $(WARNFLAGS) $(DEBUGFLAGS)
 TESTLIBS := -lgtest -lgtest_main -pthread
 
 SRCS := tests/collections/array_test.cpp tests/smartptr/cow_test.cpp tests/smartptr/unique_test.cpp \
-	tests/smartptr/lazy_test.cpp
+	tests/smartptr/lazy_test.cpp tests/smartptr/concurrent_lazy_test.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
