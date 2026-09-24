@@ -18,7 +18,7 @@ private:
 
 public:
 	template<typename F>
-	explicit Lazy(F&& factory) : factory_(std::forward(factory)) {}
+	explicit Lazy(F&& factory) : factory_(std::forward<F>(factory)) {}
 
 	Lazy(const Lazy&) = delete;
 	Lazy& operator=(const Lazy&) = delete;
