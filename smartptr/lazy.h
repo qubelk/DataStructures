@@ -46,6 +46,14 @@ public:
 		return &*cached_result_;
 	}
 
+	T& get() {
+		return **this;
+	}
+
+	const T& get() const {
+		return **this;
+	}
+
 	bool isInitialized() const noexcept {
 		return cached_result_.has_value();
 	}
