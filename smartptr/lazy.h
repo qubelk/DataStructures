@@ -58,7 +58,7 @@ public:
 		return cached_result_.has_value();
 	}
 
-	void reset() {
+	virtual void reset() {
 		cached_result_.reset();
 	}
 };
