@@ -16,7 +16,7 @@ TEST(ConcurrentLazyTest, FactoryCalledOnce) {
 
 	constexpr size_t kThreadsCount = 4;
 
-	std::vector<std::thread> threads{kThreadsCount};
+	std::vector<std::thread> threads;
 	threads.reserve(kThreadsCount);
 
 	std::latch start{kThreadsCount};
@@ -28,7 +28,7 @@ TEST(ConcurrentLazyTest, FactoryCalledOnce) {
 		});
 	}
 
-	for (auto& t : threads) {
+	for (auto&& t : threads) {
 		t.join();
 	}
 
