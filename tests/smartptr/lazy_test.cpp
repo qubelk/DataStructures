@@ -11,10 +11,6 @@ struct Dummy {
 	}
 };
 
-Dummy funcToMove() {
-	return Dummy("Moved");
-}
-
 TEST(LazyTest, DefaultConstructor) {
 	Lazy<Dummy> l{[] {
 		return Dummy("Default");
