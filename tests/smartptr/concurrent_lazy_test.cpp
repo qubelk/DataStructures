@@ -28,7 +28,7 @@ TEST(ConcurrentLazyTest, FactoryCalledOnce) {
 		});
 	}
 
-	for (auto&& t : threads) {
+	for (auto& t : threads) {
 		t.join();
 	}
 
