@@ -32,7 +32,6 @@ TEST(LazyTest, MethodCall) {
 		return Dummy("Method call");
 	}};
 
-	l->something();
+	EXPECT_EQ(l->something(), "Method call some");
 	EXPECT_EQ(l.isInitialized(), true);
-	EXPECT_EQ(l->data_, "Method call some");
 }
