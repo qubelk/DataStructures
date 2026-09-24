@@ -21,3 +21,5 @@ To better understand the topic of data structures, in this repository I will imp
 - [ ] `Shared<T>` - pointer with reference count for owners from C++ STL.
 
 - [x] `Cow<T>` - pointer with copying data on write from Rust.
+
+- [ ] `Lazy<T>` - pointer to function whose value calculated once and then cached from 'Thunk' concepts.
