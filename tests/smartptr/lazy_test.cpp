@@ -64,6 +64,14 @@ TEST(LazyTest, Dereference) {
 	EXPECT_EQ((*l).data_, "Some Data");
 }
 
+TEST(LazyTest, Get) {
+	Lazy<Dummy> l{[]() {
+		return Dummy("Some Data");
+	}};
+
+	EXPECT_EQ(l.get().data_, "Some Data");
+}
+
 TEST(LazyTest, Reset) {
 	Lazy<Dummy> l{[]() {
 		return Dummy("Reset");
