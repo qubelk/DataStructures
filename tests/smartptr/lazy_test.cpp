@@ -61,7 +61,7 @@ TEST(LazyTest, Dereference) {
 		return Dummy("Some Data");
 	}};
 
-	EXPECT_EQ(*l, "Some Data");
+	EXPECT_EQ((*l).data_, "Some Data");
 }
 
 TEST(LazyTest, Reset) {
